@@ -1,9 +1,8 @@
 import cv2
 
 
-filename= r"C:\Users\josed\OneDrive\Imágenes\IMG_3110.JPG"
+imagen= cv2.imread("inserte su imagen (el nombre del archivo)")
 #le pasamos la imagen con la que trabajaremos
-imagen=cv2.imread(filename)
 
 #aplicamos filtro a la foto , en ese caso usamos la funcion cvtcolor y le pasamos el color gris de cv2
 filtrogrises=cv2.cvtColor(imagen,cv2.COLOR_BGR2GRAY)
@@ -20,4 +19,4 @@ invertblur=cv2.bitwise_not(blurfilter)
 pencilsketch=cv2.divide(filtrogrises,invertblur,scale=256.0)
 
 #regresamos la imagen pintada a lapiz
-cv2.imwrite("output.jpg",pencilsketch)
+cv2.imwrite("output.png",pencilsketch)
