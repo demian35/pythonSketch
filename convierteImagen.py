@@ -15,3 +15,9 @@ blurfilter=cv2.GaussianBlur(invert,(21,21),0)
 
 #invertimos a blur
 invertblur=cv2.bitwise_not(blurfilter)
+
+#aplicamos el pencil sketch
+pencilsketch=cv2.divide(filtrogrises,invertblur,scale=256.0)
+
+#regresamos la imagen pintada a lapiz
+cv2.imwrite("output.jpg",pencilsketch)
