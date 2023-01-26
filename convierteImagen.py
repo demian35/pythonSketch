@@ -1,7 +1,7 @@
 import cv2
 
 
-imagen= cv2.imread("inserte una imagen")
+imagen= cv2.imread("IMG_3110.JPG")
 #le pasamos la imagen con la que trabajaremos
 
 #aplicamos filtro a la foto , en ese caso usamos la funcion cvtcolor y le pasamos el color gris de cv2
@@ -21,7 +21,7 @@ pencilsketch=cv2.divide(filtrogrises,invertblur,scale=256.0)
 
 
 
-print("Que filtro desea usar : seleccione una opcion 1 pencilSketch , 2 blur , 3 grises , 4 salir")
+print("Que filtro desea usar : seleccione una opcion 1 grises , 2 blur , 3 pencilsketch , 4 salir")
 opcion=int(input())
 #regresamos la imagen pintada a lapiz
 
