@@ -1,4 +1,16 @@
 import cv2
+import tkinter as tk
+from tkinter import filedialog #examinar ordenador
+
+
+##funcion para cargar la imagen
+def cargaImagen():
+    rutaimagen=filedialog.askopenfile()
+    if rutaimagen:
+        imagen=cv2.imread(rutaimagen)
+        return imagen
+    else:
+        return None
 
 
 imagen= cv2.imread("IMG_3110.JPG")
