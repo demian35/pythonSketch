@@ -14,7 +14,7 @@ def cargaImagen():
         return None
 
 
-def aplicaFiltro(opcion):
+def aplicaFiltro(opcion,label_resultado):
     imagen, directorio=cargaImagen()
     if imagen is not None:
         #aplicamos filtro a la foto , en ese caso usamos la funcion cvtcolor y le pasamos el color gris de cv2
@@ -27,6 +27,7 @@ def aplicaFiltro(opcion):
         invertblur=cv2.bitwise_not(blurfilter)
         #aplicamos el pencil sketch
         pencilsketch=cv2.divide(filtrogrises,invertblur,scale=256.0)
+        nombre_archivo = None
         if opcion==1:
             nombre_archivo = "outputgrey.jpg"
             cv2.imwrite(os.path.join(directorio, nombre_archivo), filtrogrises)
@@ -40,6 +41,8 @@ def aplicaFiltro(opcion):
             print("Opcion no valida")
         if nombre_archivo:
             print(f"Imagen guardada en: {os.path.join(directorio, nombre_archivo)}")
+            mensaje = f"Imagen guardada en: {os.path.join(directorio, nombre_archivo)}"
+            label_resultado.config(text=mensaje)
             
 #metodo main para crear la interfaz grafica del programa
 def main():
@@ -56,6 +59,10 @@ def main():
     
     botonsketch=tk.Button(root, text="efecto lapiz",command=lambda:aplicaFiltro(3))
     botonsketch.pack(pady=5)
+    
+    ## Etiqueta para mostrar el resultado
+    label_resultado = tk.Label(root, text="")
+    label_resultado.pack()
     
     root.mainloop()
     
