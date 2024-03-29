@@ -1,4 +1,5 @@
 import cv2
+import os
 import tkinter as tk
 from tkinter import filedialog #examinar ordenador
 
@@ -8,13 +9,13 @@ def cargaImagen():
     rutaimagen=filedialog.askopenfile()
     if rutaimagen:
         imagen=cv2.imread(rutaimagen.name)
-        return imagen
+        return imagen,os.path.dirname(rutaimagen)
     else:
         return None
 
 
 def aplicaFiltro(opcion):
-    imagen=cargaImagen()
+    imagen, directorio=cargaImagen()
     if imagen is not None:
         #aplicamos filtro a la foto , en ese caso usamos la funcion cvtcolor y le pasamos el color gris de cv2
         filtrogrises=cv2.cvtColor(imagen,cv2.COLOR_BGR2GRAY)
@@ -27,11 +28,14 @@ def aplicaFiltro(opcion):
         #aplicamos el pencil sketch
         pencilsketch=cv2.divide(filtrogrises,invertblur,scale=256.0)
         if opcion==1:
-            cv2.imwrite("outputgrey.jpg", filtrogrises)
+            nombre_archivo = "outputgrey.jpg"
+            cv2.imwrite(os.path.join(directorio, nombre_archivo), filtrogrises)
         elif opcion==2:
-            cv2.imwrite("outputblur.jpg",blurfilter)
+            nombre_archivo = "outputblur.jpg"
+            cv2.imwrite(os.path.join(directorio, nombre_archivo), blurfilter)
         elif opcion==3:
-            cv2.imwrite("outputpencilsketch.jpg",pencilsketch)
+            nombre_archivo = "outputpencilsketch.jpg"
+            cv2.imwrite(os.path.join(directorio, nombre_archivo), pencilsketch)
         else:
             print("Opcion no valida")
             
