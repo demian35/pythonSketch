@@ -9,7 +9,7 @@ def cargaImagen():
     rutaimagen=filedialog.askopenfile()
     if rutaimagen:
         imagen=cv2.imread(rutaimagen.name)
-        return imagen,os.path.dirname(rutaimagen)
+        return imagen,os.path.dirname(rutaimagen.name)
     else:
         return None
 
@@ -38,6 +38,8 @@ def aplicaFiltro(opcion):
             cv2.imwrite(os.path.join(directorio, nombre_archivo), pencilsketch)
         else:
             print("Opcion no valida")
+        if nombre_archivo:
+            print(f"Imagen guardada en: {os.path.join(directorio, nombre_archivo)}")
             
 #metodo main para crear la interfaz grafica del programa
 def main():
