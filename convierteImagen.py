@@ -50,19 +50,21 @@ def main():
     root.title("Fitros") #titulo para la interfaz
     root.geometry("800x600")  # Establece el tamaño de la ventana
     
-    #botones para aplicar los filros
-    botongrises=tk.Button(root, text="efecto de grises", command=lambda:aplicaFiltro(1))
-    botongrises.pack(pady=5)
-    
-    botonblur=tk.Button(root,text="efecto blur", command=lambda:aplicaFiltro(2))
-    botonblur.pack(pady=5)
-    
-    botonsketch=tk.Button(root, text="efecto lapiz",command=lambda:aplicaFiltro(3))
-    botonsketch.pack(pady=5)
-    
     ## Etiqueta para mostrar el resultado
     label_resultado = tk.Label(root, text="")
     label_resultado.pack()
+    
+    #botones para aplicar los filros
+    botongrises=tk.Button(root, text="efecto de grises", command=lambda:aplicaFiltro(1,label_resultado))
+    botongrises.pack(pady=5)
+    
+    botonblur=tk.Button(root,text="efecto blur", command=lambda:aplicaFiltro(2,label_resultado))
+    botonblur.pack(pady=5)
+    
+    botonsketch=tk.Button(root, text="efecto lapiz",command=lambda:aplicaFiltro(3,label_resultado))
+    botonsketch.pack(pady=5)
+    
+
     
     root.mainloop()
     
