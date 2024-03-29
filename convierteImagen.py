@@ -7,7 +7,7 @@ from tkinter import filedialog #examinar ordenador
 def cargaImagen():
     rutaimagen=filedialog.askopenfile()
     if rutaimagen:
-        imagen=cv2.imread(rutaimagen)
+        imagen=cv2.imread(rutaimagen.name)
         return imagen
     else:
         return None
@@ -34,4 +34,25 @@ def aplicaFiltro(opcion):
             cv2.imwrite("outputpencilsketch.jpg",pencilsketch)
         else:
             print("Opcion no valida")
+            
+#metodo main para crear la interfaz grafica del programa
+def main():
+    root=tk.Tk()
+    root.title("Fitros") #titulo para la interfaz
+    root.geometry("800x600")  # Establece el tamaño de la ventana
+    
+    #botones para aplicar los filros
+    botongrises=tk.Button(root, text="efecto de grises", command=lambda:aplicaFiltro(1))
+    botongrises.pack(pady=5)
+    
+    botonblur=tk.Button(root,text="efecto blur", command=lambda:aplicaFiltro(2))
+    botonblur.pack(pady=5)
+    
+    botonsketch=tk.Button(root, text="efecto lapiz",command=lambda:aplicaFiltro(3))
+    botonsketch.pack(pady=5)
+    
+    root.mainloop()
+    
+if __name__=="__main__":
+     main()
             
